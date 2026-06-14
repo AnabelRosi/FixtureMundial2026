@@ -1,0 +1,150 @@
+{
+  "tournament": {
+    "name": "FIFA World Cup 2026",
+    "year": 2026
+  },
+  "groups": {
+    "Grupo A": [
+      { "id": 1, "home": "Mexico", "away": "South Africa", "date": "11 June", "time": "15:00", "venue": "Estadio Azteca, Mexico City", "checked": 0 },
+      { "id": 2, "home": "South Korea", "away": "Czech Republic", "date": "11 June", "time": "22:00", "venue": "Estadio Akron, Guadalajara", "checked": 0 },
+      { "id": 3, "home": "Czech Republic", "away": "South Africa", "date": "18 June", "time": "12:00", "venue": "Mercedes-Benz Stadium, Atlanta", "checked": 0 },
+      { "id": 4, "home": "Mexico", "away": "South Korea", "date": "18 June", "time": "21:00", "venue": "Estadio Akron, Guadalajara", "checked": 0 },
+      { "id": 5, "home": "Czech Republic", "away": "Mexico", "date": "24 June", "time": "21:00", "venue": "Estadio Azteca, Mexico City", "checked": 0 },
+      { "id": 6, "home": "South Africa", "away": "South Korea", "date": "24 June", "time": "21:00", "venue": "Estadio BBVA, Monterrey", "checked": 0 }
+    ],
+    "Grupo B": [
+      { "id": 7, "home": "Canada", "away": "Bosnia and Herzegovina", "date": "12 June", "time": "15:00", "venue": "BMO Field, Toronto", "checked": 0 },
+      { "id": 8, "home": "Qatar", "away": "Switzerland", "date": "13 June", "time": "15:00", "venue": "Levi's Stadium, San Francisco", "checked": 0 },
+      { "id": 9, "home": "Switzerland", "away": "Bosnia and Herzegovina", "date": "18 June", "time": "15:00", "venue": "SoFi Stadium, Los Angeles", "checked": 0 },
+      { "id": 10, "home": "Canada", "away": "Qatar", "date": "18 June", "time": "18:00", "venue": "BC Place, Vancouver", "checked": 0 },
+      { "id": 11, "home": "Switzerland", "away": "Canada", "date": "24 June", "time": "15:00", "venue": "BC Place, Vancouver", "checked": 0 },
+      { "id": 12, "home": "Bosnia and Herzegovina", "away": "Qatar", "date": "24 June", "time": "15:00", "venue": "Lumen Field, Seattle", "checked": 0 }
+    ],
+    "Grupo C": [
+      { "id": 13, "home": "Brazil", "away": "Morocco", "date": "13 June", "time": "18:00", "venue": "MetLife Stadium, New York/New Jersey", "checked": 0 },
+      { "id": 14, "home": "Haiti", "away": "Scotland", "date": "13 June", "time": "21:00", "venue": "Gillette Stadium, Boston", "checked": 0 },
+      { "id": 15, "home": "Scotland", "away": "Morocco", "date": "19 June", "time": "18:00", "venue": "Gillette Stadium, Boston", "checked": 0 },
+      { "id": 16, "home": "Brazil", "away": "Haiti", "date": "19 June", "time": "21:00", "venue": "Lincoln Financial Field, Philadelphia", "checked": 0 },
+      { "id": 17, "home": "Scotland", "away": "Brazil", "date": "24 June", "time": "18:00", "venue": "Hard Rock Stadium, Miami Gardens", "checked": 0 },
+      { "id": 18, "home": "Morocco", "away": "Haiti", "date": "24 June", "time": "18:00", "venue": "Mercedes-Benz Stadium, Atlanta", "checked": 0 }
+    ],
+    "Grupo D": [
+      { "id": 19, "home": "USA", "away": "Paraguay", "date": "12 June", "time": "21:00", "venue": "SoFi Stadium, Los Angeles", "checked": 0 },
+      { "id": 20, "home": "Australia", "away": "Turkey", "date": "13 June", "time": "00:00", "venue": "BC Place, Vancouver", "checked": 0 },
+      { "id": 21, "home": "Turkey", "away": "Paraguay", "date": "19 June", "time": "00:00", "venue": "Levi's Stadium, San Francisco", "checked": 0 },
+      { "id": 22, "home": "USA", "away": "Australia", "date": "19 June", "time": "15:00", "venue": "Lumen Field, Seattle", "checked": 0 },
+      { "id": 23, "home": "Turkey", "away": "USA", "date": "25 June", "time": "22:00", "venue": "SoFi Stadium, Los Angeles", "checked": 0 },
+      { "id": 24, "home": "Paraguay", "away": "Australia", "date": "25 June", "time": "22:00", "venue": "Levi's Stadium, San Francisco", "checked": 0 }
+    ],
+    "Grupo E": [
+      { "id": 25, "home": "Germany", "away": "Curacao", "date": "14 June", "time": "13:00", "venue": "NRG Stadium, Houston", "checked": 0 },
+      { "id": 26, "home": "Ivory Coast", "away": "Ecuador", "date": "14 June", "time": "19:00", "venue": "Lincoln Financial Field, Philadelphia", "checked": 0 },
+      { "id": 27, "home": "Germany", "away": "Ivory Coast", "date": "20 June", "time": "16:00", "venue": "BMO Field, Toronto", "checked": 0 },
+      { "id": 28, "home": "Ecuador", "away": "Curacao", "date": "20 June", "time": "20:00", "venue": "GEHA Field at Arrowhead Stadium, Kansas City", "checked": 0 },
+      { "id": 29, "home": "Ecuador", "away": "Germany", "date": "25 June", "time": "15:00", "venue": "NRG Stadium, Houston", "checked": 0 },
+      { "id": 30, "home": "Curacao", "away": "Ivory Coast", "date": "25 June", "time": "15:00", "venue": "Lincoln Financial Field, Philadelphia", "checked": 0 }
+    ],
+    "Grupo F": [
+      { "id": 31, "home": "Netherlands", "away": "Japan", "date": "14 June", "time": "16:00", "venue": "AT&T Stadium, Dallas", "checked": 0 },
+      { "id": 32, "home": "Sweden", "away": "Tunisia", "date": "14 June", "time": "22:00", "venue": "Estadio BBVA, Monterrey", "checked": 0 },
+      { "id": 33, "home": "Netherlands", "away": "Sweden", "date": "20 June", "time": "13:00", "venue": "NRG Stadium, Houston", "checked": 0 },
+      { "id": 34, "home": "Tunisia", "away": "Japan", "date": "20 June", "time": "22:00", "venue": "Estadio BBVA, Monterrey", "checked": 0 },
+      { "id": 35, "home": "Tunisia", "away": "Netherlands", "date": "25 June", "time": "12:00", "venue": "GEHA Field at Arrowhead Stadium, Kansas City", "checked": 0 },
+      { "id": 36, "home": "Japan", "away": "Sweden", "date": "25 June", "time": "15:00", "venue": "AT&T Stadium, Dallas", "checked": 0 }
+    ],
+    "Grupo G": [
+      { "id": 37, "home": "Belgium", "away": "Egypt", "date": "15 June", "time": "15:00", "venue": "Lumen Field, Seattle", "checked": 0 },
+      { "id": 38, "home": "Iran", "away": "New Zealand", "date": "15 June", "time": "21:00", "venue": "SoFi Stadium, Los Angeles", "checked": 0 },
+      { "id": 39, "home": "Belgium", "away": "Iran", "date": "21 June", "time": "15:00", "venue": "SoFi Stadium, Los Angeles", "checked": 0 },
+      { "id": 40, "home": "New Zealand", "away": "Egypt", "date": "21 June", "time": "21:00", "venue": "BC Place, Vancouver", "checked": 0 },
+      { "id": 41, "home": "New Zealand", "away": "Belgium", "date": "26 June", "time": "15:00", "venue": "Lumen Field, Seattle", "checked": 0 },
+      { "id": 42, "home": "Egypt", "away": "Iran", "date": "26 June", "time": "15:00", "venue": "SoFi Stadium, Los Angeles", "checked": 0 }
+    ],
+    "Grupo H": [
+      { "id": 43, "home": "Spain", "away": "Cape Verde", "date": "15 June", "time": "12:00", "venue": "Mercedes-Benz Stadium, Atlanta", "checked": 0 },
+      { "id": 44, "home": "Saudi Arabia", "away": "Uruguay", "date": "15 June", "time": "18:00", "venue": "Hard Rock Stadium, Miami Gardens", "checked": 0 },
+      { "id": 45, "home": "Spain", "away": "Saudi Arabia", "date": "21 June", "time": "12:00", "venue": "Mercedes-Benz Stadium, Atlanta", "checked": 0 },
+      { "id": 46, "home": "Uruguay", "away": "Cape Verde", "date": "21 June", "time": "18:00", "venue": "Hard Rock Stadium, Miami Gardens", "checked": 0 },
+      { "id": 47, "home": "Uruguay", "away": "Spain", "date": "26 June", "time": "12:00", "venue": "MetLife Stadium, New York/New Jersey", "checked": 0 },
+      { "id": 48, "home": "Cape Verde", "away": "Saudi Arabia", "date": "26 June", "time": "15:00", "venue": "NRG Stadium, Houston", "checked": 0 }
+    ],
+    "Grupo I": [
+      { "id": 49, "home": "France", "away": "Senegal", "date": "16 June", "time": "15:00", "venue": "MetLife Stadium, New York/New Jersey", "checked": 0 },
+      { "id": 50, "home": "Iraq", "away": "Norway", "date": "16 June", "time": "18:00", "venue": "Gillette Stadium, Boston", "checked": 0 },
+      { "id": 51, "home": "France", "away": "Iraq", "date": "22 June", "time": "17:00", "venue": "Lincoln Financial Field, Philadelphia", "checked": 0 },
+      { "id": 52, "home": "Norway", "away": "Senegal", "date": "22 June", "time": "21:00", "venue": "MetLife Stadium, New York/New Jersey", "checked": 0 },
+      { "id": 53, "home": "Norway", "away": "France", "date": "26 June", "time": "18:00", "venue": "Gillette Stadium, Boston", "checked": 0 },
+      { "id": 54, "home": "Senegal", "away": "Iraq", "date": "26 June", "time": "21:00", "venue": "Lincoln Financial Field, Philadelphia", "checked": 0 }
+    ],
+    "Grupo J": [
+      { "id": 55, "home": "Argentina", "away": "Algeria", "date": "16 June", "time": "21:00", "venue": "GEHA Field at Arrowhead Stadium, Kansas City", "checked": 0 },
+      { "id": 56, "home": "Austria", "away": "Jordan", "date": "16 June", "time": "00:00", "venue": "Levi's Stadium, San Francisco", "checked": 0 },
+      { "id": 57, "home": "Argentina", "away": "Austria", "date": "22 June", "time": "13:00", "venue": "AT&T Stadium, Dallas", "checked": 0 },
+      { "id": 58, "home": "Jordan", "away": "Algeria", "date": "22 June", "time": "17:00", "venue": "GEHA Field at Arrowhead Stadium, Kansas City", "checked": 0 },
+      { "id": 59, "home": "Jordan", "away": "Argentina", "date": "27 June", "time": "15:00", "venue": "AT&T Stadium, Dallas", "checked": 0 },
+      { "id": 60, "home": "Algeria", "away": "Austria", "date": "27 June", "time": "15:00", "venue": "GEHA Field at Arrowhead Stadium, Kansas City", "checked": 0 }
+    ],
+    "Grupo K": [
+      { "id": 61, "home": "Portugal", "away": "DR Congo", "date": "17 June", "time": "13:00", "venue": "NRG Stadium, Houston", "checked": 0 },
+      { "id": 62, "home": "Uzbekistan", "away": "Colombia", "date": "17 June", "time": "22:00", "venue": "Estadio Azteca, Mexico City", "checked": 0 },
+      { "id": 63, "home": "Portugal", "away": "Uzbekistan", "date": "23 June", "time": "15:00", "venue": "NRG Stadium, Houston", "checked": 0 },
+      { "id": 64, "home": "Colombia", "away": "DR Congo", "date": "23 June", "time": "22:00", "venue": "Estadio Akron, Guadalajara", "checked": 0 },
+      { "id": 65, "home": "Colombia", "away": "Portugal", "date": "27 June", "time": "15:00", "venue": "NRG Stadium, Houston", "checked": 0 },
+      { "id": 66, "home": "DR Congo", "away": "Uzbekistan", "date": "27 June", "time": "15:00", "venue": "Mercedes-Benz Stadium, Atlanta", "checked": 0 }
+    ],
+    "Grupo L": [
+      { "id": 67, "home": "England", "away": "Croatia", "date": "17 June", "time": "16:00", "venue": "AT&T Stadium, Dallas", "checked": 0 },
+      { "id": 68, "home": "Ghana", "away": "Panama", "date": "17 June", "time": "19:00", "venue": "BMO Field, Toronto", "checked": 0 },
+      { "id": 69, "home": "England", "away": "Ghana", "date": "23 June", "time": "12:00", "venue": "Gillette Stadium, Boston", "checked": 0 },
+      { "id": 70, "home": "Panama", "away": "Croatia", "date": "23 June", "time": "15:00", "venue": "MetLife Stadium, New York/New Jersey", "checked": 0 },
+      { "id": 71, "home": "Panama", "away": "England", "date": "27 June", "time": "20:00", "venue": "BMO Field, Toronto", "checked": 0 },
+      { "id": 72, "home": "Croatia", "away": "Ghana", "date": "27 June", "time": "20:00", "venue": "SoFi Stadium, Los Angeles", "checked": 0 }
+    ]
+  },
+  "knockout": {
+    "Round of 32": [
+      { "id": 73, "home": "2A", "away": "2B", "date": "28 June", "time": "TBD", "venue": "SoFi Stadium, Los Angeles", "checked": 0 },
+      { "id": 74, "home": "1A", "away": "3rd Group C/D/E/F/G", "date": "29 June", "time": "TBD", "venue": "Gillette Stadium, Boston", "checked": 0 },
+      { "id": 75, "home": "1C", "away": "3rd Group D/E/H/I/J", "date": "29 June", "time": "TBD", "venue": "AT&T Stadium, Dallas", "checked": 0 },
+      { "id": 76, "home": "1B", "away": "2F", "date": "29 June", "time": "TBD", "venue": "Estadio BBVA, Monterrey", "checked": 0 },
+      { "id": 77, "home": "1D", "away": "2E", "date": "30 June", "time": "TBD", "venue": "Mercedes-Benz Stadium, Atlanta", "checked": 0 },
+      { "id": 78, "home": "1E", "away": "2D", "date": "30 June", "time": "TBD", "venue": "Lincoln Financial Field, Philadelphia", "checked": 0 },
+      { "id": 79, "home": "1F", "away": "3rd Group A/B/C/G/H", "date": "1 July", "time": "TBD", "venue": "MetLife Stadium, New York/New Jersey", "checked": 0 },
+      { "id": 80, "home": "1G", "away": "2H", "date": "1 July", "time": "TBD", "venue": "Levi's Stadium, San Francisco", "checked": 0 },
+      { "id": 81, "home": "1H", "away": "2G", "date": "2 July", "time": "TBD", "venue": "Hard Rock Stadium, Miami Gardens", "checked": 0 },
+      { "id": 82, "home": "1I", "away": "2J", "date": "2 July", "time": "TBD", "venue": "Estadio Azteca, Mexico City", "checked": 0 },
+      { "id": 83, "home": "1J", "away": "2I", "date": "3 July", "time": "TBD", "venue": "AT&T Stadium, Dallas", "checked": 0 },
+      { "id": 84, "home": "1K", "away": "2L", "date": "3 July", "time": "TBD", "venue": "NRG Stadium, Houston", "checked": 0 },
+      { "id": 85, "home": "1L", "away": "2K", "date": "3 July", "time": "TBD", "venue": "GEHA Field at Arrowhead Stadium, Kansas City", "checked": 0 },
+      { "id": 86, "home": "1M", "away": "2N", "date": "28 June", "time": "TBD", "venue": "Lumen Field, Seattle", "checked": 0 },
+      { "id": 87, "home": "1O", "away": "2P", "date": "29 June", "time": "TBD", "venue": "BMO Field, Toronto", "checked": 0 },
+      { "id": 88, "home": "1Q", "away": "2R", "date": "30 June", "time": "TBD", "venue": "BC Place, Vancouver", "checked": 0 }
+    ],
+    "Round of 16": [
+      { "id": 89, "home": "Winner Match 73", "away": "Winner Match 74", "date": "4 July", "time": "TBD", "venue": "NRG Stadium, Houston", "checked": 0 },
+      { "id": 90, "home": "Winner Match 75", "away": "Winner Match 76", "date": "5 July", "time": "TBD", "venue": "Mercedes-Benz Stadium, Atlanta", "checked": 0 },
+      { "id": 91, "home": "Winner Match 77", "away": "Winner Match 78", "date": "6 July", "time": "TBD", "venue": "SoFi Stadium, Los Angeles", "checked": 0 },
+      { "id": 92, "home": "Winner Match 79", "away": "Winner Match 80", "date": "6 July", "time": "TBD", "venue": "Lumen Field, Seattle", "checked": 0 },
+      { "id": 93, "home": "Winner Match 81", "away": "Winner Match 82", "date": "7 July", "time": "TBD", "venue": "Levi's Stadium, San Francisco", "checked": 0 },
+      { "id": 94, "home": "Winner Match 83", "away": "Winner Match 84", "date": "7 July", "time": "TBD", "venue": "AT&T Stadium, Dallas", "checked": 0 },
+      { "id": 95, "home": "Winner Match 85", "away": "Winner Match 86", "date": "8 July", "time": "TBD", "venue": "Gillette Stadium, Boston", "checked": 0 },
+      { "id": 96, "home": "Winner Match 87", "away": "Winner Match 88", "date": "8 July", "time": "TBD", "venue": "MetLife Stadium, New York/New Jersey", "checked": 0 }
+    ],
+    "Quarterfinals": [
+      { "id": 97, "home": "Winner Match 89", "away": "Winner Match 90", "date": "9 July", "time": "TBD", "venue": "Hard Rock Stadium, Miami Gardens", "checked": 0 },
+      { "id": 98, "home": "Winner Match 91", "away": "Winner Match 92", "date": "10 July", "time": "TBD", "venue": "Estadio Azteca, Mexico City", "checked": 0 },
+      { "id": 99, "home": "Winner Match 93", "away": "Winner Match 94", "date": "10 July", "time": "TBD", "venue": "BC Place, Vancouver", "checked": 0 },
+      { "id": 100, "home": "Winner Match 95", "away": "Winner Match 96", "date": "11 July", "time": "TBD", "venue": "AT&T Stadium, Dallas", "checked": 0 }
+    ],
+    "Semifinals": [
+      { "id": 101, "home": "Winner QF1 (Match 97)", "away": "Winner QF2 (Match 98)", "date": "14 July", "time": "TBD", "venue": "Mercedes-Benz Stadium, Atlanta", "checked": 0 },
+      { "id": 102, "home": "Winner QF3 (Match 99)", "away": "Winner QF4 (Match 100)", "date": "15 July", "time": "TBD", "venue": "AT&T Stadium, Dallas", "checked": 0 }
+    ],
+    "Third Place Playoff": [
+      { "id": 103, "home": "Loser SF1", "away": "Loser SF2", "date": "18 July", "time": "TBD", "venue": "Hard Rock Stadium, Miami Gardens", "checked": 0 }
+    ],
+    "Final": [
+      { "id": 104, "home": "Winner SF1", "away": "Winner SF2", "date": "19 July", "time": "TBD", "venue": "MetLife Stadium, New York/New Jersey", "checked": 0 }
+    ]
+  }
+}
