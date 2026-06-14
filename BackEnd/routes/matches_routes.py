@@ -1,4 +1,4 @@
-# Endpoints para partidos (listar, actualizar resultados)
+
 from flask import Blueprint, request, jsonify
 from ..models import db, Match
 from .auth_routes import token_required
