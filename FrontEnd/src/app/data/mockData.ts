@@ -78,7 +78,7 @@ export const stadiums: Stadium[] = [
     capacity: 87523,
     yearBuilt: 1966,
     matches: 8,
-    image: 'https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=800&q=80'
+   image: '/src/assets/Estadio_Azsteca.webp'
   },
   {
     id: 'metlife',
@@ -88,7 +88,7 @@ export const stadiums: Stadium[] = [
     capacity: 82500,
     yearBuilt: 2010,
     matches: 8,
-    image: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80'
+    image: '/src/assets/MetLife_Stadium.webp'
   },
   {
     id: 'sofi',
@@ -98,7 +98,7 @@ export const stadiums: Stadium[] = [
     capacity: 70240,
     yearBuilt: 2020,
     matches: 7,
-    image: 'https://images.unsplash.com/photo-1543351611-58f69d7c1781?w=800&q=80'
+    image: '/src/assets/SoFI_Stadium.webp'
   },
   {
     id: 'att',
@@ -108,7 +108,7 @@ export const stadiums: Stadium[] = [
     capacity: 80000,
     yearBuilt: 2009,
     matches: 7,
-    image: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800&q=80'
+    image: '/src/assets/AT&T_Stadium.webp'
   },
   {
     id: 'bmo',
@@ -118,7 +118,7 @@ export const stadiums: Stadium[] = [
     capacity: 45500,
     yearBuilt: 2007,
     matches: 6,
-    image: 'https://images.unsplash.com/photo-1459865264687-595d652de67e?w=800&q=80'
+    image:  '/src/assets/BMO_Stadio.webp'
   },
   {
     id: 'bbva',
@@ -128,7 +128,7 @@ export const stadiums: Stadium[] = [
     capacity: 53500,
     yearBuilt: 2015,
     matches: 6,
-    image: 'https://images.unsplash.com/photo-1556816213-354f0e306e2d?w=800&q=80'
+    image: '/src/assets/Estadio_BBVA.webp'
   },
   {
     id: 'akron',
@@ -138,7 +138,7 @@ export const stadiums: Stadium[] = [
     capacity: 46232,
     yearBuilt: 2010,
     matches: 5,
-    image: 'https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800&q=80'
+    image: '/src/assets/Akron_Stadio.webp'
   },
   {
     id: 'bc-place',
@@ -148,7 +148,7 @@ export const stadiums: Stadium[] = [
     capacity: 54500,
     yearBuilt: 1983,
     matches: 5,
-    image: 'https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=800&q=80'
+    image: '/src/assets/BC_stadium.webp'
   },
   {
     id: 'gillette',
@@ -158,7 +158,7 @@ export const stadiums: Stadium[] = [
     capacity: 65878,
     yearBuilt: 2002,
     matches: 6,
-    image: 'https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=800&q=80'
+    image: '/src/assets/Guillette_Stadium.webp'
   },
   {
     id: 'arrowhead',
@@ -168,7 +168,7 @@ export const stadiums: Stadium[] = [
     capacity: 76416,
     yearBuilt: 1972,
     matches: 6,
-    image: 'https://images.unsplash.com/photo-1540747913346-19212a4b423e?w=800&q=80'
+    image: '/src/assets/Arrowhead_Stadium.webp'
   },
   {
     id: 'nrg',
@@ -178,7 +178,7 @@ export const stadiums: Stadium[] = [
     capacity: 72220,
     yearBuilt: 2002,
     matches: 7,
-    image: 'https://images.unsplash.com/photo-1567959879413-e25de39be9c0?w=800&q=80'
+    image: '/src/assets/NRC_stadium.webp'
   },
   {
     id: 'mercedes',
@@ -188,7 +188,7 @@ export const stadiums: Stadium[] = [
     capacity: 71000,
     yearBuilt: 2017,
     matches: 8,
-    image: 'https://images.unsplash.com/photo-1504016798967-59a258e6a746?w=800&q=80'
+    image: '/src/assets/Mercedes_benz_stadium.webp'
   },
   {
     id: 'lincoln',
@@ -198,7 +198,7 @@ export const stadiums: Stadium[] = [
     capacity: 69796,
     yearBuilt: 2003,
     matches: 6,
-    image: 'https://images.unsplash.com/photo-1471295253337-3ceaaedca402?w=800&q=80'
+    image: '/src/assets/Lincoln_stadium.webp'
   },
   {
     id: 'levi',
@@ -208,7 +208,7 @@ export const stadiums: Stadium[] = [
     capacity: 68500,
     yearBuilt: 2014,
     matches: 6,
-    image: 'https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=800&q=80'
+    image: '/src/assets/Levi´s_stadium.webp'
   },
   {
     id: 'snapdragon',
@@ -218,7 +218,7 @@ export const stadiums: Stadium[] = [
     capacity: 35000,
     yearBuilt: 2022,
     matches: 5,
-    image: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=800&q=80'
+    image: '/src/assets/snapdragon-stadium-shadows.webp'
   },
   {
     id: 'estadio-ciudad',
@@ -228,7 +228,7 @@ export const stadiums: Stadium[] = [
     capacity: 42114,
     yearBuilt: 1954,
     matches: 5,
-    image: 'https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=800&q=80'
+    image: '/src/assets/Estadio_Ciudad_de_los_Deportes.webp'
   },
 ];
 
