@@ -1,6 +1,7 @@
 import { ArrowLeft, User } from 'lucide-react';
-import { teams, type Player } from '../../data/mockData';
+import { teams, type Player, type Team } from '../../data/mockData';
 import { useState } from 'react';
+import { useFetch } from '../../hooks/useFetch';
 
 interface TeamDetailProps {
   teamId: string;
@@ -8,7 +9,10 @@ interface TeamDetailProps {
 }
 
 export function TeamDetail({ teamId, onBack }: TeamDetailProps) {
-  const team = teams.find(t => t.id === teamId);
+  // Cuando el backend esté listo, reemplazá null por la URL:
+  // const { data: apiTeam } = useFetch<Team>(`http://localhost:5000/api/teams/${teamId}`);
+  const { data: apiTeam } = useFetch<Team>(null);
+  const team = apiTeam ?? teams.find(t => t.id === teamId);
   const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);
 
   if (!team) return null;

@@ -1,17 +1,23 @@
 import { Facebook, Twitter, Instagram, Youtube } from 'lucide-react';
 
-export function Footer() {
+interface FooterProps {
+  onNavigate: (section: string) => void;
+}
+
+export function Footer({ onNavigate }: FooterProps) {
   return (
     <footer className="bg-[#003B7A] text-white mt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
-                <span className="text-[#003B7A] font-bold">FIFA</span>
-              </div>
+              <img
+                src="/src/assets/logo_pagina.jpg"
+                alt="Mundial 2026"
+                className="w-12 h-12 rounded-full object-cover"
+              />
               <div>
-                <div className="font-semibold">FIFA World Cup</div>
+                <div className="font-semibold">Tu Portal del Mundial</div>
                 <div className="text-sm text-white/70">2026</div>
               </div>
             </div>
@@ -23,10 +29,10 @@ export function Footer() {
           <div>
             <h3 className="font-semibold mb-4">Enlaces Rápidos</h3>
             <ul className="space-y-2 text-sm text-white/70">
-              <li className="hover:text-white cursor-pointer">Grupos</li>
-              <li className="hover:text-white cursor-pointer">Selecciones</li>
-              <li className="hover:text-white cursor-pointer">Fixture</li>
-              <li className="hover:text-white cursor-pointer">Estadios</li>
+              <li onClick={() => onNavigate('groups')} className="hover:text-white cursor-pointer">Grupos</li>
+              <li onClick={() => onNavigate('fixtures')} className="hover:text-white cursor-pointer">Fixture</li>
+              <li onClick={() => onNavigate('standings')} className="hover:text-white cursor-pointer">Posiciones</li>
+              <li onClick={() => onNavigate('stadiums')} className="hover:text-white cursor-pointer">Estadios</li>
             </ul>
           </div>
 
@@ -50,7 +56,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-white/10 mt-8 pt-8 text-center text-sm text-white/70">
-          <p>© 2026 FIFA World Cup. Todos los derechos reservados.</p>
+          <p>© 2026 Tu Portal del Mundial. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>

@@ -76,7 +76,7 @@ export default function App() {
           {renderSection()}
         </div>
       </main>
-      <Footer />
+      <Footer onNavigate={handleNavigate} />
     </div>
   );
 }
