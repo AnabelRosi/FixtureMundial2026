@@ -1,4 +1,4 @@
-import { Menu, X, LogOut, User } from 'lucide-react';
+import { Menu, X, LogOut, User, Shield } from 'lucide-react';
 import { useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
 
@@ -66,6 +66,15 @@ export function Header({ currentSection, onNavigate }: HeaderProps) {
                     </span>
                   )}
                 </div>
+                {user?.role === 'admin' && (
+                  <button
+                    onClick={() => onNavigate('admin')}
+                    className="flex items-center gap-2 bg-yellow-400 text-yellow-900 px-3 py-2 rounded-lg hover:bg-yellow-300 transition-colors font-semibold text-sm"
+                  >
+                    <Shield size={16} />
+                    <span>Panel Admin</span>
+                  </button>
+                )}
                 <button
                   onClick={handleLogout}
                   className="flex items-center gap-2 bg-white/10 hover:bg-white/20 px-3 py-2 rounded-lg transition-colors"
@@ -126,6 +135,15 @@ export function Header({ currentSection, onNavigate }: HeaderProps) {
                   <p className="px-4 py-2 text-sm text-white/70">
                     Hola, {user?.username} {user?.role === 'admin' && '(Admin)'}
                   </p>
+                  {user?.role === 'admin' && (
+                    <button
+                      onClick={() => { onNavigate('admin'); setMobileMenuOpen(false); }}
+                      className="w-full flex items-center gap-2 px-4 py-2 rounded-lg bg-yellow-400 text-yellow-900 hover:bg-yellow-300 transition-colors text-left font-semibold mb-2"
+                    >
+                      <Shield size={16} />
+                      <span>Panel Admin</span>
+                    </button>
+                  )}
                   <button
                     onClick={() => { handleLogout(); setMobileMenuOpen(false); }}
                     className="w-full flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-white/10 transition-colors text-left"

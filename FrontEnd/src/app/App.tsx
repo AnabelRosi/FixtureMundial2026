@@ -11,6 +11,7 @@ import { Stadiums } from './components/sections/Stadiums';
 import { Login } from './components/auth/Login';
 import { Register } from './components/auth/Register';
 import { useAuth } from './hooks/useAuth';
+import { AdminPanel } from './components/sections/AdminPanel';
 
 export default function App() {
   const [currentSection, setCurrentSection] = useState('home');
@@ -37,11 +38,11 @@ export default function App() {
     // Secciones públicas (no requieren login)
     if (currentSection === 'login') return <Login onNavigate={handleNavigate} />;
     if (currentSection === 'register') return <Register onNavigate={handleNavigate} />;
-
+    if (currentSection === 'admin') return <AdminPanel />;
     // Secciones protegidas (requieren login)
-    //if (!isAuthenticated && currentSection !== 'home') {
-      //return <Login onNavigate={handleNavigate} />;
-    //}
+    if (!isAuthenticated && currentSection !== 'home') {
+      return <Login onNavigate={handleNavigate} />;
+    }
 
     if (currentSection === 'team-detail' && selectedTeamId) {
       return <TeamDetail teamId={selectedTeamId} onBack={handleBackToGroups} />;
