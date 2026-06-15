@@ -32,10 +32,12 @@ export function Header({ currentSection, onNavigate }: HeaderProps) {
         <div className="flex items-center justify-between h-16">
 
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => onNavigate('home')}>
-            <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-              <span className="text-[#003B7A] font-bold">FIFA</span>
-            </div>
-            <span className="hidden sm:block font-semibold">FIFA World Cup 2026</span>
+            <img
+              src="/src/assets/logo_pagina.jpg"
+              alt="Mundial 2026"
+              className="w-10 h-10 rounded-full object-cover"
+            />
+            <span className="hidden sm:block font-semibold">Cada partido cuenta</span>
           </div>
 
           <nav className="hidden md:flex gap-6">
