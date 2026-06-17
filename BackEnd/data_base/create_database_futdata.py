@@ -1,5 +1,5 @@
 import pymysql
-
+import os
 connection = pymysql.connect(
     host="localhost",
     user="root",
@@ -7,8 +7,8 @@ connection = pymysql.connect(
 )
 
 cursor = connection.cursor()
+    
 
-import os
 
 sql_path = os.path.join(os.path.dirname(__file__), "futdata.sql")
 

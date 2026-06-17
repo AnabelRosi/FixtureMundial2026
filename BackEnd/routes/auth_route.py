@@ -1,9 +1,9 @@
 from flask import Blueprint,render_template,request,redirect,url_for,flash
 from flask_login import current_user, login_user,logout_user,login_required
 
-from ..auth.auth import admin_required, roles_required, superadmin_required
-from ..models.user import User
-from ..models.db import db
+from auth.auth import admin_required, roles_required, superadmin_required
+from models.users import Users
+from models.db import db
 
 
 auth_bp = Blueprint("auth_bp",__name__, url_prefix="/auth")
@@ -15,10 +15,10 @@ def login():
         return redirect(url_for("auth_bp.dashboard"))
 
     if request.method == 'POST':
-        username = request.form.get("username")
+        name = request.form.get("username")
         password = request.form.get("password")
 
-        user = User.query.filter_by(username=username).first()
+        user = Users.query.filter_by(name=name).first()
 
         if user and user.check_password(password):
             login_user(user)
@@ -48,16 +48,16 @@ def register():
     if current_user.is_authenticated:
         return redirect(url_for("auth_bp.dashboard"))
     if request.method == 'POST':
-        username = request.form.get("username")
+        name = request.form.get("username")
         password = request.form.get("password")
         email = request.form.get("email")
-        role = request.form.get("role", "user")
+        type = request.form.get("type", "user")
 
-        if User.query.filter_by(username=username).first():
+        if Users.query.filter_by(name=name).first():
             flash("Usuario ya existente", "error")
             return redirect(url_for("auth_bp.register"))
 
-        user = User(username=username, email=email, role=role)
+        user = Users(name=name, email=email, type=type)
         user.set_password(password)
 
         db.session.add(user)
@@ -78,7 +78,7 @@ def profile():
 @admin_required
 def admin():
     #panel del admin. Solo Admin y superadmin
-    users = User.query.all()
+    users = Users.query.all()
     return render_template('admin.html', users=users, role='admin')
 
 @auth_bp.route('/superadmin')
@@ -86,7 +86,7 @@ def admin():
 @superadmin_required
 def superadmin():
     # panel del superAdmin. Solo superadmin
-    users = User.query.all()
+    users = Users.query.all()
     return render_template('superadmin.html', users=users, role='superadmin')
 
 @auth_bp.errorhandler(401)

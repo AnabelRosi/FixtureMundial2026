@@ -27,11 +27,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (storedUser && storedToken) {
       setUser(JSON.parse(storedUser));
       setToken(storedToken);
-    } else {
-      // Usuario admin de prueba — ELIMINAR cuando el backend esté listo
-      const testAdmin: User = { id: 1, username: 'admin', email: 'admin@fifa2026.com', role: 'admin' };
-      setUser(testAdmin);
-      setToken('test-token');
     }
   }, []);
 

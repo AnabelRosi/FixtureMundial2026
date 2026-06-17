@@ -1,4 +1,4 @@
-from fixture.BackEnd.data_base.database import connection, cursor
+from database import connection, cursor
 def create_team(name, city, country):
 
     cursor.execute("""

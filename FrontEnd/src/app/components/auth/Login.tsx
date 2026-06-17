@@ -7,7 +7,7 @@ interface LoginProps {
 
 export function Login({ onNavigate }: LoginProps) {
   const { login } = useAuth();
-  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [formData, setFormData] = useState({ username: '', password: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -47,11 +47,13 @@ export function Login({ onNavigate }: LoginProps) {
     <div className="min-h-[70vh] flex items-center justify-center">
       <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md border border-gray-100">
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-[#003B7A] rounded-full flex items-center justify-center mx-auto mb-4">
-            <span className="text-white font-bold text-xl">FIFA</span>
-          </div>
+          <img
+            src="/src/assets/logo_pagina.jpg"
+            alt="Mundial 2026"
+            className="w-20 h-20 rounded-full object-cover mx-auto mb-4"
+          />
           <h1 className="text-3xl text-gray-800">Iniciar Sesión</h1>
-          <p className="text-gray-500 mt-2">Mundial FIFA 2026</p>
+          <p className="text-gray-500 mt-2">Tu Portal del Mundial 2026</p>
         </div>
 
         {error && (
@@ -62,15 +64,15 @@ export function Login({ onNavigate }: LoginProps) {
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Usuario</label>
             <input
-              type="email"
-              name="email"
-              value={formData.email}
+              type="text"
+              name="username"
+              value={formData.username}
               onChange={handleChange}
               required
               className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#003B7A] bg-gray-50"
-              placeholder="tu@email.com"
+              placeholder="tu usuario"
             />
           </div>
 
@@ -96,7 +98,13 @@ export function Login({ onNavigate }: LoginProps) {
           </button>
         </form>
 
-        <p className="text-center text-sm text-gray-600 mt-6">
+        <div className="mt-6 bg-blue-50 rounded-lg p-4 text-sm text-blue-800">
+          <p className="font-semibold mb-1">Usuarios de prueba:</p>
+          <p>Admin: <span className="font-mono">admin / admin123</span></p>
+          <p>User: <span className="font-mono">user / user123</span></p>
+        </div>
+
+        <p className="text-center text-sm text-gray-600 mt-4">
           ¿No tenés cuenta?{' '}
           <button
             onClick={() => onNavigate('register')}

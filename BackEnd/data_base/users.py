@@ -1,5 +1,5 @@
 from bcrypt import hashpw, gensalt
-from .database import connection, cursor
+from database import connection, cursor
 
 def create_user(name, email, password):
     password_hash = hashpw(

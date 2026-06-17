@@ -1,5 +1,5 @@
 # app/models/match.py
-from ..extensions import db
+from .db import db
 from datetime import datetime
 
 class Match(db.Model):
@@ -19,11 +19,10 @@ class Match(db.Model):
     away_score = db.Column(db.Integer, default=None)
     
     # Fecha y hora 
-    date = db.Column(db.String(20), nullable=False)
-    time = db.Column(db.String(10), nullable=False)
+    match_date = db.Column(db.Date, nullable=False)
     
     # Estadio
-    venue = db.Column(db.String(200), nullable=False)
+    stadium_id = db.Column(db.Integer, db.ForeignKey('stadiums.id'), nullable=True)
     
     # Indica si el partido ya fue jugado / verificado por un admin
     checked = db.Column(db.Boolean, default=False)
@@ -40,9 +39,8 @@ class Match(db.Model):
             'away': self.away_team,
             'home_score': self.home_score,
             'away_score': self.away_score,
-            'date': self.date,
-            'time': self.time,
-            'venue': self.venue,
+            'match_date': self.match_date.strftime("%Y-%m-%d"),
+            'stadium_id': self.stadium_id,
             'checked': self.checked
         }
     

@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
 from ..models import Match
-from ..extensions import db
-from .auth_routes import token_required, admin_required
+from models.db import db
+from .auth_route import token_required, admin_required
 from sqlalchemy import or_
 
 matches_bp = Blueprint('matches', __name__)

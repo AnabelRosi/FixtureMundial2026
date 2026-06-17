@@ -1,0 +1,25 @@
+--cambios hechos 
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   BackEnd/app.py
+        modified:   BackEnd/auth/auth.py
+        modified:   BackEnd/models/__init__.py
+        modified:   BackEnd/models/match.py
+        deleted:    BackEnd/models/user.py
+        modified:   BackEnd/routes/auth_route.py
+        modified:   BackEnd/routes/matches_routes.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        BackEnd/auth/__init__.py
+        BackEnd/auth/__pycache__/
+        BackEnd/config/__pycache__/
+        BackEnd/data_base/
+        BackEnd/models/__pycache__/
+        BackEnd/models/player.py
+        BackEnd/models/teams.py
+        BackEnd/models/users.py
+        BackEnd/routes/__init__.py
+        BackEnd/routes/__pycache__/
+

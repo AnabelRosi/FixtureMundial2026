@@ -1,5 +1,6 @@
 
-from .user import User
+from .users import Users
 from .match import Match
-from .team import Team
+from .teams import Teams
 from .player import Player
+from .stadiums import Stadiums

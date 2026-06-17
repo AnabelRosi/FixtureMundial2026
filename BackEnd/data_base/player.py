@@ -1,4 +1,4 @@
-from .database import connection, cursor
+from database import connection, cursor
 def create_player(name,surname,age,position,jersey_number,goals,assists,matches_played,photo,team_id,height,weight,team_outside_the_world_cup,date_of_debut):
 
     cursor.execute("""
