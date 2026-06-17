@@ -11,7 +11,6 @@ api_bp = Blueprint('api', __name__, url_prefix='/api')
 
 SECRET_KEY = os.getenv('SECRET_KEY', 'fifa2026secretkey')
 
-# ── Helper: generar token JWT ──────────────────────────────────────────────────
 def generate_token(user):
     payload = {
         'user_id': user.id,
@@ -21,7 +20,6 @@ def generate_token(user):
     }
     return jwt.encode(payload, SECRET_KEY, algorithm='HS256')
 
-# ── Helper: verificar token JWT ────────────────────────────────────────────────
 def token_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
@@ -43,7 +41,6 @@ def token_required(f):
         return f(current_user, *args, **kwargs)
     return decorated
 
-# ── Helper: verificar rol admin ────────────────────────────────────────────────
 def admin_required(f):
     @wraps(f)
     def decorated(current_user, *args, **kwargs):
@@ -52,35 +49,22 @@ def admin_required(f):
         return f(current_user, *args, **kwargs)
     return decorated
 
-
 # ══════════════════════════════════════════════════════════════════════════════
 # AUTH
 # ══════════════════════════════════════════════════════════════════════════════
 
-# POST /api/login
 @api_bp.route('/login', methods=['POST'])
 @cross_origin()
 def api_login():
-    """
-    Body esperado:
-        { "username": "admin", "password": "admin123" }
-    Respuesta exitosa:
-        { "token": "...", "user": { "id", "username", "email", "role" } }
-    """
     data = request.get_json()
     if not data or not data.get('username') or not data.get('password'):
         return jsonify({'message': 'Usuario y contraseña son requeridos'}), 400
-
     user = Users.query.filter_by(name=data['username']).first()
-
     if not user or not user.check_password(data['password']):
         return jsonify({'message': 'Usuario o contraseña incorrectos'}), 401
-
     if not user.is_active:
         return jsonify({'message': 'Usuario desactivado'}), 403
-
     token = generate_token(user)
-
     return jsonify({
         'token': token,
         'user': {
@@ -91,41 +75,26 @@ def api_login():
         }
     }), 200
 
-
-# POST /api/register
 @api_bp.route('/register', methods=['POST'])
 @cross_origin()
 def api_register():
-    """
-    Body esperado:
-        { "username": "...", "email": "...", "password": "..." }
-    Respuesta exitosa:
-        { "token": "...", "user": { "id", "username", "email", "role" } }
-    """
     data = request.get_json()
     if not data:
         return jsonify({'message': 'Datos requeridos'}), 400
-
     username = data.get('username')
     email    = data.get('email')
     password = data.get('password')
-
     if not username or not email or not password:
         return jsonify({'message': 'username, email y password son requeridos'}), 400
-
     if Users.query.filter_by(name=username).first():
         return jsonify({'message': 'El nombre de usuario ya existe'}), 409
-
     if Users.query.filter_by(email=email).first():
         return jsonify({'message': 'El email ya está registrado'}), 409
-
     new_user = Users(name=username, email=email, type='user')
     new_user.set_password(password)
     db.session.add(new_user)
     db.session.commit()
-
     token = generate_token(new_user)
-
     return jsonify({
         'token': token,
         'user': {
@@ -136,8 +105,6 @@ def api_register():
         }
     }), 201
 
-
-# GET /api/me  — datos del usuario autenticado
 @api_bp.route('/me', methods=['GET'])
 @cross_origin()
 @token_required
@@ -149,12 +116,10 @@ def api_me(current_user):
         'role': current_user.type
     }), 200
 
-
 # ══════════════════════════════════════════════════════════════════════════════
-# USUARIOS  (solo admin)
+# USUARIOS
 # ══════════════════════════════════════════════════════════════════════════════
 
-# GET /api/users
 @api_bp.route('/users', methods=['GET'])
 @cross_origin()
 @token_required
@@ -170,8 +135,6 @@ def api_get_users(current_user):
         'createdAt': u.created_at.strftime('%Y-%m-%d') if u.created_at else None
     } for u in users]), 200
 
-
-# POST /api/users  — crear usuario desde panel admin
 @api_bp.route('/users', methods=['POST'])
 @cross_origin()
 @token_required
@@ -182,18 +145,14 @@ def api_create_user(current_user):
     email    = data.get('email')
     password = data.get('password')
     role     = data.get('role', 'user')
-
     if not username or not email or not password:
         return jsonify({'message': 'username, email y password son requeridos'}), 400
-
     if Users.query.filter_by(name=username).first():
         return jsonify({'message': 'El nombre de usuario ya existe'}), 409
-
     new_user = Users(name=username, email=email, type=role)
     new_user.set_password(password)
     db.session.add(new_user)
     db.session.commit()
-
     return jsonify({
         'id': new_user.id,
         'username': new_user.name,
@@ -202,8 +161,6 @@ def api_create_user(current_user):
         'createdAt': new_user.created_at.strftime('%Y-%m-%d') if new_user.created_at else None
     }), 201
 
-
-# PUT /api/users/<id>  — modificar usuario
 @api_bp.route('/users/<int:user_id>', methods=['PUT'])
 @cross_origin()
 @token_required
@@ -211,30 +168,23 @@ def api_create_user(current_user):
 def api_update_user(current_user, user_id):
     user = Users.query.get_or_404(user_id)
     data = request.get_json()
-
     if 'username' in data:
         existing = Users.query.filter_by(name=data['username']).first()
         if existing and existing.id != user_id:
             return jsonify({'message': 'El nombre de usuario ya existe'}), 409
         user.name = data['username']
-
     if 'email' in data:
         existing = Users.query.filter_by(email=data['email']).first()
         if existing and existing.id != user_id:
             return jsonify({'message': 'El email ya está registrado'}), 409
         user.email = data['email']
-
     if 'role' in data:
         user.type = data['role']
-
     if 'password' in data and data['password']:
         user.set_password(data['password'])
-
     if 'is_active' in data:
         user.is_active = data['is_active']
-
     db.session.commit()
-
     return jsonify({
         'id': user.id,
         'username': user.name,
@@ -243,8 +193,6 @@ def api_update_user(current_user, user_id):
         'is_active': user.is_active
     }), 200
 
-
-# DELETE /api/users/<id>
 @api_bp.route('/users/<int:user_id>', methods=['DELETE'])
 @cross_origin()
 @token_required
@@ -252,8 +200,67 @@ def api_update_user(current_user, user_id):
 def api_delete_user(current_user, user_id):
     if current_user.id == user_id:
         return jsonify({'message': 'No podés eliminar tu propia cuenta'}), 400
-
     user = Users.query.get_or_404(user_id)
     db.session.delete(user)
     db.session.commit()
     return jsonify({'message': 'Usuario eliminado correctamente'}), 200
+
+# ══════════════════════════════════════════════════════════════════════════════
+# EQUIPOS
+# ══════════════════════════════════════════════════════════════════════════════
+
+@api_bp.route('/teams', methods=['GET'])
+@cross_origin()
+def get_teams():
+    from models.teams import Teams
+    teams = Teams.query.all()
+    return jsonify([{
+        'id': t.id,
+        'name': t.name,
+        'city': t.city,
+        'country': t.country
+    } for t in teams])
+
+@api_bp.route('/teams/<int:team_id>', methods=['GET'])
+@cross_origin()
+def get_team(team_id):
+    from models.teams import Teams
+    team = Teams.query.get_or_404(team_id)
+    return jsonify({
+        'id': team.id,
+        'name': team.name,
+        'city': team.city,
+        'country': team.country
+    })
+
+# ══════════════════════════════════════════════════════════════════════════════
+# JUGADORES
+# ══════════════════════════════════════════════════════════════════════════════
+
+@api_bp.route('/players', methods=['GET'])
+@cross_origin()
+def get_players():
+    from models.player import Player
+    players = Player.query.all()
+    return jsonify([{
+        'id': p.id,
+        'name': p.name,
+        'team': p.team,
+        'position': p.position,
+        'goals': p.goals or 0,
+        'assists': p.assists or 0
+    } for p in players])
+
+@api_bp.route('/players/<int:player_id>', methods=['GET'])
+@cross_origin()
+def get_player(player_id):
+    from models.player import Player
+    player = Player.query.get_or_404(player_id)
+    return jsonify({
+        'id': player.id,
+        'name': player.name,
+        'team': player.team,
+        'position': player.position,
+        'goals': player.goals or 0,
+        'assists': player.assists or 0
+    })

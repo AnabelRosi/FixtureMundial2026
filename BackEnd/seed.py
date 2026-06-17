@@ -3,7 +3,11 @@ import json
 from datetime import datetime
 from pathlib import Path
 from app import create_app          
-from models import db, Teams, Stadiums, Match, Player   #
+from models.db import db
+from models.teams import Teams
+from models.stadiums import Stadiums
+from models.match import Match
+from models.player import Player
 
 # Rutas a los JSON 
 BASE_DIR = Path(__file__).parent

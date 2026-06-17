@@ -60,5 +60,8 @@ with app.app_context():
         db.session.commit()
         print("Usuarios de ejemplo creados: admin / user")
 
+def create_app():
+    return app
+
 if __name__ == "__main__":
     app.run(debug=True)
