@@ -45,7 +45,7 @@ class Player:
 
     @classmethod
     def load_all(cls):
-        """Carga todos los jugadores desde el archivo JSON y devuelve una lista de objetos Player."""
+        """Carga todos los jugadores desde el archivo JSON."""
         json_path = os.path.join(os.path.dirname(__file__), '..', 'data', 'players.json')
         with open(json_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
@@ -86,3 +86,28 @@ class Player:
             if p.id == player_id:
                 return p
         return None
+
+    @classmethod
+    def save_all(cls, players_list):
+        """Guarda una lista de objetos Player en el archivo JSON."""
+        json_path = os.path.join(os.path.dirname(__file__), '..', 'data', 'players.json')
+        players_dict = [p.to_dict() for p in players_list]
+        with open(json_path, 'w', encoding='utf-8') as f:
+            json.dump({"players": players_dict}, f, indent=2, ensure_ascii=False)
+
+    def save(self):
+        """Guarda este jugador (crea o actualiza) en el JSON."""
+        all_players = Player.load_all()
+        for i, p in enumerate(all_players):
+            if p.id == self.id:
+                all_players[i] = self
+                break
+        else:
+            all_players.append(self)
+        Player.save_all(all_players)
+
+    def delete(self):
+        """Elimina este jugador del JSON."""
+        all_players = Player.load_all()
+        all_players = [p for p in all_players if p.id != self.id]
+        Player.save_all(all_players)
