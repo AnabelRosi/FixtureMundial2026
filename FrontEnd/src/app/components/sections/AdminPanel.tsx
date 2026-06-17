@@ -10,22 +10,37 @@ interface UserData {
   createdAt: string;
 }
 
-const mockUsers: UserData[] = [
-  { id: 1, username: 'admin', email: 'admin@fifa2026.com', role: 'admin', createdAt: '2026-06-01' },
-  { id: 2, username: 'fernando', email: 'fernando@gmail.com', role: 'user', createdAt: '2026-06-10' },
-  { id: 3, username: 'cintia', email: 'cintia@gmail.com', role: 'user', createdAt: '2026-06-11' },
-];
-
 export function AdminPanel() {
-  const { user } = useAuth();
-  const [users, setUsers] = useState<UserData[]>(mockUsers);
+  const { user, token } = useAuth();
+  const [users, setUsers] = useState<UserData[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
   const [showForm, setShowForm] = useState(false);
   const [editingUser, setEditingUser] = useState<UserData | null>(null);
   const [formData, setFormData] = useState({ username: '', email: '', role: 'user' as 'admin' | 'user', password: '' });
   const [message, setMessage] = useState('');
 
-  // Cuando el backend esté listo, reemplazá mockUsers por:
-  // const { data, loading } = useFetch<UserData[]>('http://localhost:5000/api/users');
+  const fetchUsers = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/api/users', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      const data = await response.json();
+      if (response.ok) {
+        setUsers(data.users || data);
+      } else {
+        setError(data.message || 'Error al cargar usuarios');
+      }
+    } catch (err) {
+      setError('No se pudo conectar con el servidor');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (token) fetchUsers();
+  }, [token]);
 
   if (user?.role !== 'admin') {
     return (
@@ -37,21 +52,32 @@ export function AdminPanel() {
     );
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (editingUser) {
-      setUsers(users.map(u => u.id === editingUser.id ? { ...u, ...formData } : u));
-      setMessage('Usuario actualizado correctamente.');
-    } else {
-      const newUser: UserData = {
-        id: users.length + 1,
-        username: formData.username,
-        email: formData.email,
-        role: formData.role,
-        createdAt: new Date().toISOString().split('T')[0],
-      };
-      setUsers([...users, newUser]);
-      setMessage('Usuario creado correctamente.');
+    try {
+      const url = editingUser
+        ? `http://localhost:5000/api/users/${editingUser.id}`
+        : 'http://localhost:5000/api/users';
+      const method = editingUser ? 'PUT' : 'POST';
+
+      const response = await fetch(url, {
+        method,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        setMessage(editingUser ? 'Usuario actualizado correctamente.' : 'Usuario creado correctamente.');
+        fetchUsers();
+      } else {
+        setMessage(data.message || 'Error al guardar usuario');
+      }
+    } catch {
+      setMessage('Error de conexión');
     }
     setShowForm(false);
     setEditingUser(null);
@@ -59,18 +85,30 @@ export function AdminPanel() {
     setTimeout(() => setMessage(''), 3000);
   };
 
-  const handleEdit = (user: UserData) => {
-    setEditingUser(user);
-    setFormData({ username: user.username, email: user.email, role: user.role, password: '' });
+  const handleEdit = (u: UserData) => {
+    setEditingUser(u);
+    setFormData({ username: u.username, email: u.email, role: u.role, password: '' });
     setShowForm(true);
   };
 
-  const handleDelete = (id: number) => {
-    if (confirm('¿Estás seguro que querés eliminar este usuario?')) {
-      setUsers(users.filter(u => u.id !== id));
-      setMessage('Usuario eliminado correctamente.');
-      setTimeout(() => setMessage(''), 3000);
+  const handleDelete = async (id: number) => {
+    if (!confirm('¿Estás seguro que querés eliminar este usuario?')) return;
+    try {
+      const response = await fetch(`http://localhost:5000/api/users/${id}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      const data = await response.json();
+      if (response.ok) {
+        setMessage('Usuario eliminado correctamente.');
+        fetchUsers();
+      } else {
+        setMessage(data.message || 'Error al eliminar');
+      }
+    } catch {
+      setMessage('Error de conexión');
     }
+    setTimeout(() => setMessage(''), 3000);
   };
 
   const handleCancel = () => {
@@ -95,14 +133,12 @@ export function AdminPanel() {
         </button>
       </div>
 
-      {/* MENSAJE */}
       {message && (
         <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg mb-6">
           {message}
         </div>
       )}
 
-      {/* FORMULARIO */}
       {showForm && (
         <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-8 mb-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-6">
@@ -156,17 +192,10 @@ export function AdminPanel() {
               </select>
             </div>
             <div className="md:col-span-2 flex gap-4">
-              <button
-                type="submit"
-                className="bg-[#003B7A] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#002A5C] transition-colors"
-              >
+              <button type="submit" className="bg-[#003B7A] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#002A5C] transition-colors">
                 {editingUser ? 'Guardar Cambios' : 'Crear Usuario'}
               </button>
-              <button
-                type="button"
-                onClick={handleCancel}
-                className="bg-gray-100 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors"
-              >
+              <button type="button" onClick={handleCancel} className="bg-gray-100 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors">
                 Cancelar
               </button>
             </div>
@@ -174,72 +203,64 @@ export function AdminPanel() {
         </div>
       )}
 
-      {/* TABLA DE USUARIOS */}
       <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
         <div className="bg-gradient-to-r from-[#003B7A] to-[#0055A5] px-6 py-4">
           <h2 className="text-xl font-bold text-white">Usuarios Registrados ({users.length})</h2>
         </div>
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead className="bg-gray-50 border-b border-gray-200">
-              <tr>
-                <th className="px-6 py-4 text-left text-xs uppercase tracking-wider text-gray-600">ID</th>
-                <th className="px-6 py-4 text-left text-xs uppercase tracking-wider text-gray-600">Usuario</th>
-                <th className="px-6 py-4 text-left text-xs uppercase tracking-wider text-gray-600">Email</th>
-                <th className="px-6 py-4 text-left text-xs uppercase tracking-wider text-gray-600">Rol</th>
-                <th className="px-6 py-4 text-left text-xs uppercase tracking-wider text-gray-600">Creado</th>
-                <th className="px-6 py-4 text-center text-xs uppercase tracking-wider text-gray-600">Acciones</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200">
-              {users.map(u => (
-                <tr key={u.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 text-gray-500 text-sm">{u.id}</td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 bg-[#003B7A] rounded-full flex items-center justify-center">
-                        {u.role === 'admin'
-                          ? <Shield size={16} className="text-white" />
-                          : <User size={16} className="text-white" />
-                        }
-                      </div>
-                      <span className="font-semibold text-gray-800">{u.username}</span>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 text-gray-600">{u.email}</td>
-                  <td className="px-6 py-4">
-                    <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                      u.role === 'admin'
-                        ? 'bg-yellow-100 text-yellow-800'
-                        : 'bg-blue-100 text-blue-800'
-                    }`}>
-                      {u.role === 'admin' ? 'Administrador' : 'Usuario'}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-gray-500 text-sm">{u.createdAt}</td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center justify-center gap-2">
-                      <button
-                        onClick={() => handleEdit(u)}
-                        className="p-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors"
-                        title="Editar"
-                      >
-                        <Edit size={16} />
-                      </button>
-                      <button
-                        onClick={() => handleDelete(u.id)}
-                        className="p-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors"
-                        title="Eliminar"
-                      >
-                        <Trash2 size={16} />
-                      </button>
-                    </div>
-                  </td>
+
+        {loading ? (
+          <div className="p-12 text-center text-gray-500">
+            <div className="animate-spin w-10 h-10 border-4 border-[#003B7A] border-t-transparent rounded-full mx-auto mb-4"></div>
+            <p>Cargando usuarios...</p>
+          </div>
+        ) : error ? (
+          <div className="p-8 text-center text-red-600">{error}</div>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead className="bg-gray-50 border-b border-gray-200">
+                <tr>
+                  <th className="px-6 py-4 text-left text-xs uppercase tracking-wider text-gray-600">ID</th>
+                  <th className="px-6 py-4 text-left text-xs uppercase tracking-wider text-gray-600">Usuario</th>
+                  <th className="px-6 py-4 text-left text-xs uppercase tracking-wider text-gray-600">Email</th>
+                  <th className="px-6 py-4 text-left text-xs uppercase tracking-wider text-gray-600">Rol</th>
+                  <th className="px-6 py-4 text-center text-xs uppercase tracking-wider text-gray-600">Acciones</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                {users.map((u) => (
+                  <tr key={u.id} className="hover:bg-gray-50">
+                    <td className="px-6 py-4 text-gray-500 text-sm">{u.id}</td>
+                    <td className="px-6 py-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 bg-[#003B7A] rounded-full flex items-center justify-center">
+                          {u.role === 'admin' ? <Shield size={16} className="text-white" /> : <User size={16} className="text-white" />}
+                        </div>
+                        <span className="font-semibold text-gray-800">{u.username}</span>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 text-gray-600">{u.email}</td>
+                    <td className="px-6 py-4">
+                      <span className={`px-3 py-1 rounded-full text-xs font-semibold ${u.role === 'admin' ? 'bg-yellow-100 text-yellow-800' : 'bg-blue-100 text-blue-800'}`}>
+                        {u.role === 'admin' ? 'Administrador' : 'Usuario'}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="flex items-center justify-center gap-2">
+                        <button onClick={() => handleEdit(u)} className="p-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors" title="Editar">
+                          <Edit size={16} />
+                        </button>
+                        <button onClick={() => handleDelete(u.id)} className="p-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors" title="Eliminar">
+                          <Trash2 size={16} />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </div>
   );
