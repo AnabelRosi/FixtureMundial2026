@@ -4,7 +4,6 @@ from models.db import db
 from models.player import Player
 from models.teams import Teams
 
-# Ruta al archivo JSON
 JSON_PATH = "data/players.json"
 
 def import_players():
@@ -17,7 +16,7 @@ def import_players():
         return
 
     with app.app_context():
-        # Crear un diccionario para mapear team_id -> nombre del equipo
+        # Mapeo de team_id a nombre de equipo
         team_map = {}
         for team in Teams.query.all():
             team_map[team.id] = team.name
@@ -26,7 +25,6 @@ def import_players():
         skipped = 0
 
         for p in players_data:
-            # Obtener el nombre del equipo
             team_id = p.get("team ID")
             team_name = team_map.get(team_id)
             if not team_name:
@@ -34,36 +32,22 @@ def import_players():
                 skipped += 1
                 continue
 
-            # Extraer datos básicos
-            name = p.get("name", "").strip()
-            surname = p.get("surname", "").strip()
-            full_name = f"{name} {surname}".strip()
+            full_name = f"{p.get('name', '')} {p.get('surname', '')}".strip()
             if not full_name:
-                full_name = name
+                full_name = p.get('name', 'Sin nombre')
 
-            position = p.get("position", "")
-            # Mapear posiciones en inglés a abreviaturas si es necesario
-            # Pero dejamos como está, el frontend muestra el nombre completo
-            goals = p.get("goals", 0) or 0
-            assists = p.get("assists", 0) or 0
-
-            # Verificar si el jugador ya existe (por nombre y equipo)
+            # Verificar si ya existe
             existing = Player.query.filter_by(name=full_name, team=team_name).first()
             if existing:
-                # Actualizar datos si se desea (opcional)
-                # existing.position = position
-                # existing.goals = goals
-                # existing.assists = assists
-                # db.session.commit()
                 skipped += 1
                 continue
 
             new_player = Player(
                 name=full_name,
                 team=team_name,
-                position=position,
-                goals=goals,
-                assists=assists
+                position=p.get('position', ''),
+                goals=p.get('goals', 0) or 0,
+                assists=p.get('assists', 0) or 0
             )
             db.session.add(new_player)
             inserted += 1
